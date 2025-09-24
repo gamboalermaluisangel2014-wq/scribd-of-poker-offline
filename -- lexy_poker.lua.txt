@@ -1,0 +1,183 @@
+-- lexy_poker_allinone_lexy.lua
+-- Poker Offline Booster — By ChatGPT (para Lexy 💖🥰🌹)
+
+gg.toast("With love and affection for Lexy 💖🥰🌹")
+gg.alert("With love and affection for Lexy 💖🥰🌹\n\nLexy Poker — All-in-One Booster Loaded ✨")
+
+-- ===== UTIL =====
+local function safeAlert(msg)
+  gg.alert("Lexy Poker\n\n" .. msg, "OK")
+end
+
+-- ===== ROOM FUNCTION =====
+function editRoom(originalValue, newValue, label)
+  gg.clearResults()
+  gg.searchNumber(tostring(originalValue), gg.TYPE_QWORD, false)
+  local results = gg.getResults(20)
+  if #results > 0 then
+    for i=1,#results do results[i].value = newValue end
+    gg.setValues(results)
+    gg.toast("Sala " .. label .. " editada a " .. newValue .. " ✅")
+  else
+    gg.toast("No se encontró la sala " .. label .. " ❌")
+  end
+  gg.clearResults()
+end
+
+-- ===== CHIPS MENU =====
+function chipsMenu()
+  local c = gg.multiChoice({
+    "500 → 1M","50K → 100M","1.5M → 200M","5M → 500M","12M → 1B","25M → 2B","50M → 5B",
+    "100M → 10B","500M → 50B","1B → 100B","5B → 500B","10B → 1T","50B → 5T","100B → 10T",
+    "1T → 50T","5T → 100T","10T → 500T","25T → 1Q","50T → 5Q","100T → 10Q","500T → 50Q",
+    "1Q → 100Q","5Q → 500Q","10Q → 1QT","25Q → 5QT","50Q → 10QT","100Q → 50QT","500Q → 100QT","1QT → 500QT",
+    "Back"
+  }, nil, "Chips Menu 🎲 — Select a Room")
+  if c == nil then return end
+  if c[1] then editRoom(500, 1000000, "500") end
+  if c[2] then editRoom(50000, 100000000, "50K") end
+  if c[3] then editRoom(1500000, 200000000, "1.5M") end
+  if c[4] then editRoom(5000000, 500000000, "5M") end
+  if c[5] then editRoom(12000000, 1000000000, "12M") end
+  if c[6] then editRoom(25000000, 2000000000, "25M") end
+  if c[7] then editRoom(50000000, 5000000000, "50M") end
+  if c[8] then editRoom(100000000, 10000000000, "100M") end
+  if c[9] then editRoom(500000000, 50000000000, "500M") end
+  if c[10] then editRoom(1000000000, 100000000000, "1B") end
+  if c[11] then editRoom(5000000000, 500000000000, "5B") end
+  if c[12] then editRoom(10000000000, 1000000000000, "10B") end
+  if c[13] then editRoom(50000000000, 5000000000000, "50B") end
+  if c[14] then editRoom(100000000000, 10000000000000, "100B") end
+  if c[15] then editRoom(1000000000000, 50000000000000, "1T") end
+  if c[16] then editRoom(5000000000000, 100000000000000, "5T") end
+  if c[17] then editRoom(10000000000000, 500000000000000, "10T") end
+  if c[18] then editRoom(25000000000000, 1000000000000000, "25T") end
+  if c[19] then editRoom(50000000000000, 5000000000000000, "50T") end
+  if c[20] then editRoom(100000000000000, 10000000000000000, "100T") end
+  if c[21] then editRoom(500000000000000, 50000000000000000, "500T") end
+  if c[22] then editRoom(1000000000000000, 100000000000000000, "1Q") end
+  if c[23] then editRoom(5000000000000000, 500000000000000000, "5Q") end
+  if c[24] then editRoom(10000000000000000, 1000000000000000000, "10Q") end
+  if c[25] then editRoom(25000000000000000, 5000000000000000000, "25Q") end
+  if c[26] then editRoom(50000000000000000, 10000000000000000000, "50Q") end
+  if c[27] then editRoom(100000000000000000, 50000000000000000000, "100Q") end
+  if c[28] then editRoom(500000000000000000, 100000000000000000000, "500Q") end
+  if c[29] then editRoom(1000000000000000000, 500000000000000000000, "1QT") end
+end
+
+-- ===== LEVEL MENU =====
+function setLevel(newLevel)
+  if newLevel < 1 or newLevel > 500 then
+    gg.toast("El nivel debe estar entre 1 y 500 ⚠️")
+    return
+  end
+  gg.clearResults()
+  gg.searchNumber("1~500", gg.TYPE_DWORD, false)
+  local results = gg.getResults(10)
+  if #results > 0 then
+    for i=1,#results do results[i].value = newLevel end
+    gg.setValues(results)
+    gg.toast("Nivel establecido en " .. newLevel .. " ⭐✅")
+  else
+    gg.toast("No se encontró el nivel ❌")
+  end
+  gg.clearResults()
+end
+
+function levelMenu()
+  local c = gg.multiChoice({
+    "Set Level 99 ⭐",
+    "Set Level 500 ⭐ (máx)",
+    "Elegir otro nivel (1–500) ✍️",
+    "Back"
+  }, nil, "Level Menu ⭐")
+  if c == nil then return end
+  if c[1] then setLevel(99) end
+  if c[2] then setLevel(500) end
+  if c[3] then
+    local input = gg.prompt({"Ingresa el nivel (1–500):"}, {100}, {"number"})
+    if input and input[1] then setLevel(tonumber(input[1])) end
+  end
+end
+
+-- ===== DIAMOND MENU =====
+function setDiamonds(newDiamonds)
+  gg.clearResults()
+  gg.searchNumber("1~5000", gg.TYPE_DWORD, false)
+  local results = gg.getResults(20)
+  if #results > 0 then
+    for i=1,#results do results[i].value = newDiamonds end
+    gg.setValues(results)
+    gg.toast("Diamantes establecidos en " .. newDiamonds .. " 💎✅")
+  else
+    gg.toast("No se encontraron los diamantes ❌")
+  end
+  gg.clearResults()
+end
+
+function diamondMenu()
+  local c = gg.multiChoice({
+    "Set Diamonds 9999 💎",
+    "Set Diamonds 999999 💎",
+    "Back"
+  }, nil, "Diamonds Menu 💎")
+  if c == nil then return end
+  if c[1] then setDiamonds(9999) end
+  if c[2] then setDiamonds(999999) end
+end
+
+-- ===== VIP MENU =====
+function setVIP(value)
+  gg.clearResults()
+  gg.searchNumber("0~1", gg.TYPE_DWORD, false)
+  local results = gg.getResults(5)
+  if #results > 0 then
+    for i=1,#results do results[i].value = value end
+    gg.setValues(results)
+    if value == 1 then
+      gg.toast("VIP Activado 👑✅")
+    else
+      gg.toast("VIP Desactivado ❌")
+    end
+  else
+    gg.toast("No se encontró el valor de VIP ⚠️")
+  end
+  gg.clearResults()
+end
+
+function vipMenu()
+  local c = gg.multiChoice({
+    "Activar VIP 👑",
+    "Desactivar VIP ❌",
+    "Back"
+  }, nil, "VIP Menu 👑")
+  if c == nil then return end
+  if c[1] then setVIP(1) end
+  if c[2] then setVIP(0) end
+end
+
+-- ===== MAIN MENU =====
+function menu()
+  return gg.multiChoice({
+    "Chips Menu 🎲",
+    "Level Menu ⭐",
+    "Diamonds Menu 💎",
+    "VIP Menu 👑",
+    "Exit"
+  }, nil, "Lexy Poker — All-in-One Menu ✨")
+end
+
+-- ===== MAIN LOOP =====
+while true do
+  if gg.isVisible(true) then
+    gg.setVisible(false)
+    local choice = menu()
+    if choice == nil then break end
+    if choice[1] then chipsMenu() end
+    if choice[2] then levelMenu() end
+    if choice[3] then diamondMenu() end
+    if choice[4] then vipMenu() end
+    if choice[5] then safeAlert("Goodbye Lexy! All changes are local only 💖🥰🌹") os.exit() end
+  end
+  gg.sleep(200)
+end
