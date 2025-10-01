@@ -1,0 +1,3 @@
+    <boolean name="HAS_VIP_MEMBERSHIP" value="true" />
+    <string name="LAST_VIP_PURCHSE_POPUP_SEEN">1738601952</string>
+    <boolean name="IS_USER_PAYER" value="true" />
